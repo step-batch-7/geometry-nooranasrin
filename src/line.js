@@ -2,6 +2,10 @@ const isPointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
+const isTypeEqual = function(firstLine, secondLine) {
+  return firstLine instanceof Line && secondLine instanceof Line;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = endA;
@@ -17,9 +21,9 @@ class Line {
   isEqual(other) {
     let isEndAEqual = isPointsEqual(this.endA, other.endA);
     let isEndBEqual = isPointsEqual(this.endB, other.endB);
-    let isTypeEqual = this instanceof Line && other instanceof Line;
-    return isEndAEqual && isEndBEqual && isTypeEqual;
+    let isSameType = isTypeEqual(this, other);
+    return isEndAEqual && isEndBEqual && isSameType;
   }
 }
 
-module.exports = { Line, isPointsEqual };
+module.exports = { Line, isPointsEqual, isTypeEqual };
