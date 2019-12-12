@@ -10,12 +10,13 @@ class Line {
     let position2 = `(${this.x2}, ${(this, this.y2)})`;
     return `Line : ${position1} ${position2}`;
   }
-  isEqual(otherLine) {
-    let isX1Equal = this.x1 == otherLine.x1;
-    let isY1Equal = this.y1 == otherLine.y1;
-    let isX2Equal = this.x2 == otherLine.x2;
-    let isY2Equal = this.y2 == otherLine.y2;
-    return isX1Equal && isY1Equal && isX2Equal && isY2Equal;
+  isEqual(other) {
+    let isX1Equal = this.x1 == other.x1;
+    let isY1Equal = this.y1 == other.y1;
+    let isX2Equal = this.x2 == other.x2;
+    let isY2Equal = this.y2 == other.y2;
+    let isTypeEqual = this instanceof Line && other instanceof Line;
+    return isX1Equal && isY1Equal && isX2Equal && isY2Equal && isTypeEqual;
   }
 }
 

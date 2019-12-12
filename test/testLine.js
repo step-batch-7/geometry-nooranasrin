@@ -11,7 +11,7 @@ describe("testLine", function() {
     });
     it("should give false when the two instances are not equal", function() {
       let testLine = new Line(10, 11, 12, 13);
-      let otherLine = { x1: 10, y1: 11, x2: 12, y3: 13 };
+      let otherLine = { x1: 10, y1: 11, x2: 12, y2: 13 };
       let actual = testLine.isEqual(otherLine);
       assert.ok(!actual);
     });

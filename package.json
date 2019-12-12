@@ -18,5 +18,6 @@
   "bugs": {
     "url": "https://github.com/step-batch-7/geometry-nooranasrin/issues"
   },
-  "homepage": "https://github.com/step-batch-7/geometry-nooranasrin#readme"
+  "homepage": "https://github.com/step-batch-7/geometry-nooranasrin#readme",
+  "dependencies": {}
 }
