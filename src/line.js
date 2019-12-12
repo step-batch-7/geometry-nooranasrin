@@ -6,8 +6,11 @@ class Line {
     this.y2 = y2;
   }
   get toString() {
-    return `(x1:${this.x1}, y1:${this.y1}),(x2:${this.x2}, y2:${(this,
-    this.y2)})`;
+    let position1 = `(${this.x1}, ${this.y1})`;
+    let position2 = `(${this.x2}, ${(this, this.y2)})`;
+    let printingMsg = `Line's one end is in the position ${position1}`;
+    printingMsg = `${printingMsg}\nLine's other end is in the position ${position2}`;
+    return printingMsg;
   }
   isEqual(otherLine) {
     let isX1Equal = this.x1 == otherLine.x1;

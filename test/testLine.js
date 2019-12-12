@@ -18,10 +18,11 @@ describe("testLine", function() {
   });
   describe("testToString", function() {
     it("should give the string format of the object", function() {
-      let testLine = new Line(10, 11, 2, 3);
+      let testLine = new Line(10, 11, 12, 13);
       let actual = testLine.toString;
-      let expected = `(x1:10, y1:11),(x2:2, y2:3)`;
-      assert.deepStrictEqual(actual, expected);
+      let expected =
+        "Line's one end is in the position (10, 11)\nLine's other end is in the position (12, 13)";
+      assert.strictEqual(actual, expected);
     });
   });
 });
