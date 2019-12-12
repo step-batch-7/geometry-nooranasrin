@@ -20,8 +20,7 @@ describe("testLine", function() {
     it("should give the string format of the object", function() {
       let testLine = new Line(10, 11, 12, 13);
       let actual = testLine.toString;
-      let expected =
-        "Line's one end is in the position (10, 11)\nLine's other end is in the position (12, 13)";
+      let expected = "Line : (10, 11) (12, 13)";
       assert.strictEqual(actual, expected);
     });
   });

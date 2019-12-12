@@ -8,9 +8,7 @@ class Line {
   get toString() {
     let position1 = `(${this.x1}, ${this.y1})`;
     let position2 = `(${this.x2}, ${(this, this.y2)})`;
-    let printingMsg = `Line's one end is in the position ${position1}`;
-    printingMsg = `${printingMsg}\nLine's other end is in the position ${position2}`;
-    return printingMsg;
+    return `Line : ${position1} ${position2}`;
   }
   isEqual(otherLine) {
     let isX1Equal = this.x1 == otherLine.x1;
