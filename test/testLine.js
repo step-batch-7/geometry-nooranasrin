@@ -9,11 +9,9 @@ describe("testLine", function() {
       let actual = testLine.isEqual(otherLine);
       assert.ok(actual);
     });
-  });
-  describe("isEqual", function() {
     it("should give false when the two instances are not equal", function() {
       let testLine = new Line(10, 11, 12, 13);
-      let otherLine = { x1: 10, y1: 11, x2: 12, x3: 13 };
+      let otherLine = { x1: 10, y1: 11, x2: 12, y3: 13 };
       let actual = testLine.isEqual(otherLine);
       assert.ok(!actual);
     });
@@ -22,7 +20,7 @@ describe("testLine", function() {
     it("should give the string format of the object", function() {
       let testLine = new Line(10, 11, 2, 3);
       let actual = testLine.toString;
-      let expected = `(10,11),(2,3)`;
+      let expected = `(x1:10, y1:11),(x2:2, y2:3)`;
       assert.deepStrictEqual(actual, expected);
     });
   });
