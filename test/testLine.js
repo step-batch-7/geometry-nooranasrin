@@ -1,5 +1,5 @@
 const assert = require("assert");
-const Line = require("../src/line");
+const { Line, isPointsEqual } = require("../src/line");
 
 describe("testLine", function() {
   describe("isEqual", function() {
@@ -23,5 +23,16 @@ describe("testLine", function() {
       let expected = "Line : (10, 11) (12, 13)";
       assert.strictEqual(actual, expected);
     });
+  });
+});
+
+describe("testIsPointsEqual", function() {
+  it("should give true when the inputs are equal", function() {
+    let actual = isPointsEqual(3, 3);
+    assert.ok(actual);
+  });
+  it("should give false when the inputs are not equal", function() {
+    let actual = isPointsEqual(3, 4);
+    assert.ok(!actual);
   });
 });
