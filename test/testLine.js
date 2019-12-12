@@ -16,6 +16,7 @@ describe("testLine", function() {
       assert.ok(!actual);
     });
   });
+
   describe("testToString", function() {
     it("should give the string format of the object", function() {
       let testLine = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
@@ -28,11 +29,12 @@ describe("testLine", function() {
 
 describe("testIsPointsEqual", function() {
   it("should give true when the inputs are equal", function() {
-    let actual = isPointsEqual(3, 3);
+    let actual = isPointsEqual({ x: 3, y: 3 }, { x: 3, y: 3 });
     assert.ok(actual);
   });
+
   it("should give false when the inputs are not equal", function() {
-    let actual = isPointsEqual(3, 4);
+    let actual = isPointsEqual({ x: 3, y: 3 }, { x: 3, y: 4 });
     assert.ok(!actual);
   });
 });

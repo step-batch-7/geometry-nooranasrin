@@ -1,5 +1,5 @@
 const isPointsEqual = function(point1, point2) {
-  return point1 === point2;
+  return point1.x === point2.x && point1.y === point2.y;
 };
 
 class Line {
@@ -7,18 +7,18 @@ class Line {
     this.endA = endA;
     this.endB = endB;
   }
+
   get toString() {
-    let position1 = `(${this.endA.x}, ${this.endA.y})`;
-    let position2 = `(${this.endB.x}, ${this.endB.y})`;
-    return `Line : ${position1} ${position2}`;
+    let endA = `(${this.endA.x}, ${this.endA.y})`;
+    let endB = `(${this.endB.x}, ${this.endB.y})`;
+    return `Line : ${endA} ${endB}`;
   }
+
   isEqual(other) {
-    let isX1Equal = isPointsEqual(this.endA.x, other.endA.x);
-    let isY1Equal = isPointsEqual(this.endA.y, other.endA.y);
-    let isX2Equal = isPointsEqual(this.endB.x, other.endB.x);
-    let isY2Equal = isPointsEqual(this.endB.y, other.endB.y);
+    let isEndAEqual = isPointsEqual(this.endA, other.endA);
+    let isEndBEqual = isPointsEqual(this.endB, other.endB);
     let isTypeEqual = this instanceof Line && other instanceof Line;
-    return isX1Equal && isY1Equal && isX2Equal && isY2Equal && isTypeEqual;
+    return isEndAEqual && isEndBEqual && isTypeEqual;
   }
 }
 
