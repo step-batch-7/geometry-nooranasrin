@@ -33,12 +33,12 @@ describe("Line", function() {
   });
 
   describe("length", function() {
-    it("should give the length of the given line if the sum of squares of difference of same coordinates is a perfect square", function() {
+    it("should give the length of the given line if the square root of sum of squares of differences of same coordinates is a perfect square", function() {
       const line = new Line({ x: 2, y: 1 }, { x: 6, y: 4 });
       const expectedLine = 5;
       assert.deepStrictEqual(line.length, expectedLine);
     });
-    it("should give the length of the given line if the sum of squares of difference of same coordinates is not a perfect square", function() {
+    it("should give the length of the given line if the square root sum of squares of differences of same coordinates is not a perfect square", function() {
       const line = new Line({ x: 7, y: 3 }, { x: 5, y: 2 });
       const expectedLine = 2.2360679;
       assert.approximately(line.length, expectedLine, 2.2);

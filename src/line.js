@@ -37,8 +37,7 @@ class Line {
   }
 
   isParallelTo(other) {
-    let slopeOfThisLine =
-      (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+    let slopeOfThisLine = this.slope;
     let slopeOfOtherLine =
       (other.endB.y - other.endA.y) / (other.endB.x - other.endA.x);
     return slopeOfThisLine === slopeOfOtherLine;
