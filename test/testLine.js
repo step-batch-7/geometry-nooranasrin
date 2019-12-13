@@ -33,14 +33,19 @@ describe("Line", function() {
   });
 
   describe("length", function() {
-    it("should give the length of the given line if the square root of sum of squares of differences of same coordinates is a perfect square", function() {
+    it("should give the length when the coordinates are positive", function() {
       const line = new Line({ x: 2, y: 1 }, { x: 6, y: 4 });
       const expectedLine = 5;
       assert.deepStrictEqual(line.length, expectedLine);
     });
-    it("should give the length of the given line if the square root sum of squares of differences of same coordinates is not a perfect square", function() {
-      const line = new Line({ x: 7, y: 3 }, { x: 5, y: 2 });
-      const expectedLine = 2.2360679;
+    it("should give the length of the given line when one of the coordinate is negative", function() {
+      const line = new Line({ x: -2, y: 3 }, { x: 5, y: 2 });
+      const expectedLine = 7.07;
+      assert.approximately(line.length, expectedLine, 7.07);
+    });
+    it("should give the length of the given line when the coordinates are negative", function() {
+      const line = new Line({ x: -2, y: -3 }, { x: -3, y: -5 });
+      const expectedLine = 2.236;
       assert.approximately(line.length, expectedLine, 2.2);
     });
   });
