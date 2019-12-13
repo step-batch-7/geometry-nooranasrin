@@ -48,12 +48,12 @@ describe("Line", function() {
   describe("isParallelTo", function() {
     it("should give true if two lines are parallel", function() {
       const line = new Line({ x: 3, y: 4 }, { x: 7, y: 5 });
-      const otherLine = { endA: { x: 5, y: 5 }, endB: { x: 9, y: 6 } };
+      const otherLine = new Line({ x: 5, y: 5 }, { x: 9, y: 6 });
       assert.isTrue(line.isParallelTo(otherLine));
     });
     it("should give false if two lines are not parallel", function() {
       const line = new Line({ x: 3, y: 5 }, { x: 7, y: 5 });
-      const otherLine = { endA: { x: 5, y: 5 }, endB: { x: 9, y: 6 } };
+      const otherLine = new Line({ x: 5, y: 5 }, { x: 9, y: 6 });
       assert.isFalse(line.isParallelTo(otherLine));
     });
   });
@@ -62,7 +62,7 @@ describe("Line", function() {
     it("should give the slope of a line", function() {
       const line = new Line({ x: 3, y: 4 }, { x: 7, y: 5 });
       const expected = 0.25;
-      assert.deepStrictEqual(line.slope, expected);
+      assert.approximately(line.slope, expected, 0.25);
     });
   });
 });
