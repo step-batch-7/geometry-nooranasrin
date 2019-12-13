@@ -31,6 +31,14 @@ class Line {
       arePointsEqual(this.endB, other.endB)
     );
   }
+
+  isParallelTo(other) {
+    let slopeOfThisLine =
+      (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+    let slopeOfOtherLine =
+      (other.endB.y - other.endA.y) / (other.endB.x - other.endA.x);
+    return slopeOfThisLine === slopeOfOtherLine;
+  }
 }
 
 module.exports = Line;
