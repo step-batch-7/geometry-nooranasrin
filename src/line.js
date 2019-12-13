@@ -15,10 +15,8 @@ class Line {
   }
 
   get length() {
-    const differenceOfSquaresOfX =
-      (this.endB.x - this.endA.x) * (this.endB.x - this.endA.x);
-    const differenceOfSquaresOfY =
-      (this.endB.y - this.endA.y) * (this.endB.y - this.endA.y);
+    const differenceOfSquaresOfX = Math.pow(this.endB.x - this.endA.x, 2);
+    const differenceOfSquaresOfY = Math.pow(this.endB.y - this.endA.y, 2);
     return Math.sqrt(differenceOfSquaresOfX + differenceOfSquaresOfY);
   }
 
