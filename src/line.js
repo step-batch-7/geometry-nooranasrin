@@ -14,6 +14,14 @@ class Line {
     return `Line : ${endA} ${endB}`;
   }
 
+  get length() {
+    const differenceOfSquaresOfX =
+      (this.endB.x - this.endA.x) * (this.endB.x - this.endA.x);
+    const differenceOfSquaresOfY =
+      (this.endB.y - this.endA.y) * (this.endB.y - this.endA.y);
+    return Math.sqrt(differenceOfSquaresOfX + differenceOfSquaresOfY);
+  }
+
   isEqual(other) {
     if (!(other instanceof Line)) {
       return false;
