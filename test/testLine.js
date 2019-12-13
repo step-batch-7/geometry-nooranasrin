@@ -56,6 +56,11 @@ describe("Line", function() {
       const otherLine = new Line({ x: 5, y: 5 }, { x: 9, y: 6 });
       assert.isTrue(line.isParallelTo(otherLine));
     });
+    it("should validate when one line is not an instance of class", function() {
+      const line = new Line({ x: 3, y: 4 }, { x: 7, y: 5 });
+      const otherLine = { endA: { x: 5, y: 5 }, endB: { x: 9, y: 6 } };
+      assert.isFalse(line.isParallelTo(otherLine));
+    });
     it("should give false if two lines are not parallel", function() {
       const line = new Line({ x: 3, y: 5 }, { x: 7, y: 5 });
       const otherLine = new Line({ x: 5, y: 5 }, { x: 9, y: 6 });
@@ -68,6 +73,16 @@ describe("Line", function() {
       const line = new Line({ x: 3, y: 4 }, { x: 7, y: 5 });
       const expected = 0.25;
       assert.approximately(line.slope, expected, 0.25);
+    });
+    it("should give 0 as slope when the line is parallel to x axis", function() {
+      const line = new Line({ x: -3, y: 4 }, { x: 3, y: 4 });
+      const expected = 0;
+      assert.approximately(line.slope, expected, 0);
+    });
+    it("should give the infinity when the line is parallel to y axis", function() {
+      const line = new Line({ x: 4, y: -4 }, { x: 4, y: 4 });
+      const expected = Infinity;
+      assert.strictEqual(line.slope, expected);
     });
   });
 });
