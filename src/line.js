@@ -22,6 +22,10 @@ class Line {
     return Math.sqrt(differenceOfSquaresOfX + differenceOfSquaresOfY);
   }
 
+  get slope() {
+    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+  }
+
   isEqual(other) {
     if (!(other instanceof Line)) {
       return false;

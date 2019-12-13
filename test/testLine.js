@@ -57,4 +57,12 @@ describe("Line", function() {
       assert.isFalse(line.isParallelTo(otherLine));
     });
   });
+
+  describe("slope", function() {
+    it("should give the slope of a line", function() {
+      const line = new Line({ x: 3, y: 4 }, { x: 7, y: 5 });
+      const expected = 0.25;
+      assert.deepStrictEqual(line.slope, expected);
+    });
+  });
 });
