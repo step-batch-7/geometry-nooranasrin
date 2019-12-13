@@ -1,7 +1,7 @@
 const assert = require("assert");
 const Line = require("../src/line");
 
-describe("testLine", function() {
+describe("Line", function() {
   describe("isEqual", function() {
     it("should give true when the two instances are equal", function() {
       const testLine = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
@@ -23,7 +23,7 @@ describe("testLine", function() {
     });
   });
 
-  describe("testToString", function() {
+  describe("toString", function() {
     it("should give the string format of the object", function() {
       const testLine = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
       const actual = testLine.toString;

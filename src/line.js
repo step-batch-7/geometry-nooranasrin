@@ -1,9 +1,5 @@
-const isPointsEqual = function(point1, point2) {
+const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
-};
-
-const isTypeEqual = function(line) {
-  return line instanceof Line;
 };
 
 class Line {
@@ -19,10 +15,12 @@ class Line {
   }
 
   isEqual(other) {
+    if (!(other instanceof Line)) {
+      return false;
+    }
     return (
-      isTypeEqual(other) &&
-      isPointsEqual(this.endA, other.endA) &&
-      isPointsEqual(this.endB, other.endB)
+      arePointsEqual(this.endA, other.endA) &&
+      arePointsEqual(this.endB, other.endB)
     );
   }
 }
