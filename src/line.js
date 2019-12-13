@@ -1,3 +1,5 @@
+"use strict";
+
 const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
@@ -8,16 +10,14 @@ class Line {
     this.endB = { x: endB.x, y: endB.y };
   }
 
-  get toString() {
+  toString() {
     let endA = `(${this.endA.x}, ${this.endA.y})`;
     let endB = `(${this.endB.x}, ${this.endB.y})`;
     return `Line : ${endA} ${endB}`;
   }
 
   get length() {
-    const differenceOfSquaresOfX = Math.pow(this.endB.x - this.endA.x, 2);
-    const differenceOfSquaresOfY = Math.pow(this.endB.y - this.endA.y, 2);
-    return Math.sqrt(differenceOfSquaresOfX + differenceOfSquaresOfY);
+    return Math.hypot(this.endB.x - this.endA.x, this.endB.y - this.endA.y);
   }
 
   get slope() {
@@ -25,16 +25,14 @@ class Line {
   }
 
   isEqual(other) {
-    if (!(other instanceof Line)) {
-      return false;
-    }
-    return (
-      arePointsEqual(this.endA, other.endA) &&
-      arePointsEqual(this.endB, other.endB)
-    );
+    if (!(other instanceof Line)) return false;
+    const areEndAEqual = arePointsEqual(this.endA, other.endA);
+    const areEndBEqual = arePointsEqual(this.endB, other.endB);
+    return areEndAEqual && areEndBEqual;
   }
 
   isParallelTo(other) {
+    if (!(other instanceof Line)) return false;
     return this.slope === other.slope;
   }
 }
