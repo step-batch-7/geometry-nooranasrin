@@ -19,11 +19,12 @@ class Line {
   }
 
   isEqual(other) {
-    let isEndAEqual = isPointsEqual(this.endA, other.endA);
-    let isEndBEqual = isPointsEqual(this.endB, other.endB);
-    let isSameType = isTypeEqual(this, other);
-    return isEndAEqual && isEndBEqual && isSameType;
+    return (
+      isTypeEqual(this, other) &&
+      isPointsEqual(this.endA, other.endA) &&
+      isPointsEqual(this.endB, other.endB)
+    );
   }
 }
 
-module.exports = { Line, isPointsEqual, isTypeEqual };
+module.exports = Line;
