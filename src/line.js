@@ -37,13 +37,15 @@ class Line {
 
   isParallelTo(other) {
     if (!(other instanceof Line)) return false;
-    const thisYIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
-    const otherYIntercept = getYIntercept(
-      other.endA.x,
-      other.endA.y,
-      other.slope
-    );
-    return thisYIntercept != otherYIntercept && this.slope === other.slope;
+    const isYInterceptNotEqual =
+      getYIntercept(this.endA.x, this.endA.y, this.slope) !=
+      getYIntercept(other.endA.x, other.endA.y, other.slope);
+    return isYInterceptNotEqual && this.slope === other.slope;
+  }
+
+  findX(y) {
+    const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
+    return (y - c) / this.slope;
   }
 }
 

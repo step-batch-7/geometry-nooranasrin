@@ -92,7 +92,7 @@ describe("Line", () => {
       let line2 = new Line({ x: 2, y: 2 }, { x: 3, y: 3 });
       assert.isFalse(line1.isParallelTo(line2));
     });
-    it("should invalidate overlapping lines", () => {
+    it("should invalidate overlapping lines when the line references are same", () => {
       let line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
       assert.isFalse(line1.isParallelTo(line1));
     });
@@ -114,6 +114,24 @@ describe("Line", () => {
     it("Should give slope of a line when slope is negative", () => {
       const line = new Line({ x: 7, y: 2 }, { x: 3, y: 3 });
       assert.strictEqual(line.slope, -0.25);
+    });
+  });
+
+  describe("findX", () => {
+    it("should give the x coordinate when the y coordinate is positive", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 2, y: 2 });
+      const actual = line.findX(1);
+      assert.strictEqual(actual, 1);
+    });
+    it("should give the x coordinate when the y coordinate is negative", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -2, y: -2 });
+      const actual = line.findX(-1);
+      assert.strictEqual(actual, -1);
+    });
+    it("should give the x coordinate when y is 0", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -2, y: -2 });
+      const actual = line.findX(0);
+      assert.strictEqual(actual, 0);
     });
   });
 });
