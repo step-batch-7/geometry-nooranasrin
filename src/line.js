@@ -17,7 +17,7 @@ class Line {
   toString() {
     let endA = `(${this.endA.x}, ${this.endA.y})`;
     let endB = `(${this.endB.x}, ${this.endB.y})`;
-    return `Line : ${endA} ${endB}`;
+    return `[Line ${endA} to ${endB}]`;
   }
 
   get length() {

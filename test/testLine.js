@@ -33,7 +33,7 @@ describe("Line", () => {
   describe("toString", () => {
     it("should give the string format of the object", () => {
       const line = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
-      assert.strictEqual(line.toString(), "Line : (10, 11) (12, 13)");
+      assert.strictEqual(line.toString(), "[Line (10, 11) to (12, 13)]");
     });
   });
 
