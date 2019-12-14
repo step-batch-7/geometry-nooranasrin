@@ -8,6 +8,11 @@ const getYIntercept = function(x, y, m) {
   return y - m * x;
 };
 
+const isAPointInTheLineSegment = function(range, coordinate) {
+  const [start, end] = range.sort();
+  return coordinate >= start && coordinate <= end;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -44,11 +49,13 @@ class Line {
   }
 
   findX(y) {
+    if (!isAPointInTheLineSegment([this.endA.x, this.endB.x], y)) return NaN;
     const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return (y - c) / this.slope;
   }
 
   findY(x) {
+    if (!isAPointInTheLineSegment([this.endA.y, this.endB.y], x)) return NaN;
     const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return this.slope * x + c;
   }
