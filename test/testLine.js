@@ -141,9 +141,12 @@ describe("Line", () => {
 
   describe("findY", () => {
     it("should give the y coordinate when the x coordinate is positive", () => {
-      const line = new Line({ x: 0, y: 0 }, { x: 2, y: 2 });
+      let line = new Line({ x: 0, y: 0 }, { x: 2, y: 2 });
       const actual = line.findY(1);
       assert.strictEqual(actual, 1);
+
+      line = new Line({ x: 2, y: 2 }, { x: 0, y: 0 });
+      assert.equal(line.findY(1), 1);
     });
     it("should give the y coordinate when the x coordinate is negative", () => {
       const line = new Line({ x: 0, y: 0 }, { x: -2, y: -2 });
@@ -158,9 +161,23 @@ describe("Line", () => {
     it("should give NaN when the point is outside of the line segment", () => {
       let line = new Line({ x: 0, y: 0 }, { x: 4, y: 4 });
       assert.isNaN(line.findY(5));
+    });
+  });
 
-      line = new Line({ x: 4, y: 4 }, { x: 0, y: 0 });
-      assert.isNaN(line.findY(5));
+  describe("split", () => {
+    it("should split the given line in the middle", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
+      const firstLine = new Line({ x: 0, y: 0 }, { x: 5, y: 0 });
+      const secondLine = new Line({ x: 5, y: 0 }, { x: 10, y: 0 });
+      const expected = [firstLine, secondLine];
+      assert.deepStrictEqual(line.split(), expected);
+    });
+    it("should split the given line in the middle even it is a floating point", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 9, y: 0 });
+      const firstLine = new Line({ x: 0, y: 0 }, { x: 4.5, y: 0 });
+      const secondLine = new Line({ x: 4.5, y: 0 }, { x: 9, y: 0 });
+      const expected = [firstLine, secondLine];
+      assert.deepStrictEqual(line.split(), expected);
     });
   });
 });
