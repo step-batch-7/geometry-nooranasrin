@@ -201,7 +201,7 @@ describe("Line", () => {
     it("should invalidate a point that is in the same line but not in the same segment", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
       const point = new Point(11, 11);
-      assert.isNaN(line.hasPoint(point));
+      assert.isFalse(line.hasPoint(point));
     });
   });
 });

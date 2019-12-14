@@ -1,4 +1,5 @@
 "use strict";
+const Point = require("./point");
 
 const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
@@ -74,13 +75,7 @@ class Line {
   }
 
   hasPoint(point) {
-    const isXisInRange = isInRange([this.endA.x, this.endB.x], point.x);
-    const isYisInRange = isInRange([this.endA.y, this.endB.y], point.y);
-    if (!(isXisInRange || isYisInRange)) return NaN;
-    return (
-      point.y ===
-      this.slope * point.x + getYIntercept(this.endA.x, this.endA.y, this.slope)
-    );
+    return point instanceof Point && point.x === this.findX(point.y);
   }
 }
 
