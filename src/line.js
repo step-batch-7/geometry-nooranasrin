@@ -47,6 +47,11 @@ class Line {
     const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return (y - c) / this.slope;
   }
+
+  findY(x) {
+    const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
+    return this.slope * x + c;
+  }
 }
 
 module.exports = Line;

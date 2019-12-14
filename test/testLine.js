@@ -134,4 +134,22 @@ describe("Line", () => {
       assert.strictEqual(actual, 0);
     });
   });
+
+  describe("findY", () => {
+    it("should give the y coordinate when the x coordinate is positive", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 2, y: 2 });
+      const actual = line.findY(1);
+      assert.strictEqual(actual, 1);
+    });
+    it("should give the y coordinate when the x coordinate is negative", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -2, y: -2 });
+      const actual = line.findY(-1);
+      assert.strictEqual(actual, -1);
+    });
+    it("should give the y coordinate when x is 0", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -2, y: -2 });
+      const actual = line.findY(0);
+      assert.strictEqual(actual, 0);
+    });
+  });
 });
