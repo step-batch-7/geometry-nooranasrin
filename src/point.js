@@ -15,6 +15,10 @@ class Point {
   toString() {
     return `[Point @(${this.x},${this.y})]`;
   }
+
+  visit(callback) {
+    return callback(this.x, this.y);
+  }
 }
 
 module.exports = Point;

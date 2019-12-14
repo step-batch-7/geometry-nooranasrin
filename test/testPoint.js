@@ -35,4 +35,15 @@ describe("Point", () => {
       assert.strictEqual(point.toString(), "[Point @(10,11)]");
     });
   });
+
+  describe("visit", () => {
+    it("should give the result of calculation when the visit is invoked", () => {
+      const point = new Point(2, 3);
+      let actual = point.visit((x, y) => x + y);
+      assert.strictEqual(actual, 5);
+
+      actual = point.visit((x, y) => x * y);
+      assert.strictEqual(actual, 6);
+    });
+  });
 });
