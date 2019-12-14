@@ -19,6 +19,10 @@ class Point {
   visit(callback) {
     return callback(this.x, this.y);
   }
+
+  clone() {
+    return this;
+  }
 }
 
 module.exports = Point;

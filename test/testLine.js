@@ -156,7 +156,10 @@ describe("Line", () => {
       assert.strictEqual(actual, 0);
     });
     it("should give NaN when the point is outside of the line segment", () => {
-      const line = new Line({ x: 0, y: 0 }, { x: 4, y: 4 });
+      let line = new Line({ x: 0, y: 0 }, { x: 4, y: 4 });
+      assert.isNaN(line.findY(5));
+
+      line = new Line({ x: 4, y: 4 }, { x: 0, y: 0 });
       assert.isNaN(line.findY(5));
     });
   });

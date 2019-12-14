@@ -46,4 +46,11 @@ describe("Point", () => {
       assert.strictEqual(actual, 6);
     });
   });
+
+  describe("clone", () => {
+    it("should return the same instance", () => {
+      const point = new Point(2, 3);
+      assert.deepStrictEqual(point.clone(), { x: 2, y: 3 });
+    });
+  });
 });
