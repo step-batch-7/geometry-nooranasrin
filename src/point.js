@@ -7,9 +7,13 @@ class Point {
     this.x = x;
     this.y = y;
   }
+
   isEqual(other) {
     if (!(other instanceof Point)) return false;
     return arePointsEqual(this, other);
+  }
+  toString() {
+    return `[Point @(${this.x},${this.y})]`;
   }
 }
 
