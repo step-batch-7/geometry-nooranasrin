@@ -1,6 +1,7 @@
 "use strict";
 const assert = require("chai").assert;
 const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", () => {
   describe("isEqual", () => {
@@ -178,6 +179,29 @@ describe("Line", () => {
       const secondLine = new Line({ x: 4.5, y: 0 }, { x: 9, y: 0 });
       const expected = [firstLine, secondLine];
       assert.deepStrictEqual(line.split(), expected);
+    });
+  });
+
+  describe("hasPoint", () => {
+    it("should validate a point that is in the line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(4, 4);
+      assert.isTrue(line.hasPoint(point));
+    });
+    it("should validate a point that is in the endA", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(0, 0);
+      assert.isTrue(line.hasPoint(point));
+    });
+    it("should validate a point that is in the endB", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(10, 10);
+      assert.isTrue(line.hasPoint(point));
+    });
+    it("should invalidate a point that is in the same line but not in the same segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(11, 11);
+      assert.isNaN(line.hasPoint(point));
     });
   });
 });

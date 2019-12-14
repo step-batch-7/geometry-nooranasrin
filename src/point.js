@@ -21,7 +21,7 @@ class Point {
   }
 
   clone() {
-    return this;
+    return new Point(this.x, this.y);
   }
 }
 

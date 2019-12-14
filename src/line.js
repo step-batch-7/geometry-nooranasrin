@@ -72,6 +72,16 @@ class Line {
       new Line({ x: middleX, y: middleY }, this.endB)
     ];
   }
+
+  hasPoint(point) {
+    const isXisInRange = isInRange([this.endA.x, this.endB.x], point.x);
+    const isYisInRange = isInRange([this.endA.y, this.endB.y], point.y);
+    if (!(isXisInRange || isYisInRange)) return NaN;
+    return (
+      point.y ===
+      this.slope * point.x + getYIntercept(this.endA.x, this.endA.y, this.slope)
+    );
+  }
 }
 
 module.exports = Line;
