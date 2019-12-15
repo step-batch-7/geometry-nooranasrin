@@ -141,6 +141,10 @@ describe("Line", () => {
       const line = new Line({ x: 7, y: 2 }, { x: 3, y: 3 });
       assert.strictEqual(line.slope, -0.25);
     });
+    it("should give NaN if end points of the line are same", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+      assert.isNaN(line.slope);
+    });
   });
 
   describe("findX", () => {
