@@ -47,7 +47,7 @@ describe("Line", () => {
   describe("length", () => {
     it("should give the length when the coordinates are positive", () => {
       const line = new Line({ x: 2, y: 1 }, { x: 6, y: 4 });
-      assert.deepStrictEqual(line.length, 5);
+      assert.strictEqual(line.length, 5);
     });
     it("should give the length of the given line when one of the coordinate is negative", () => {
       const line = new Line({ x: -2, y: 3 }, { x: 5, y: 2 });
@@ -57,9 +57,13 @@ describe("Line", () => {
       const line = new Line({ x: -2, y: -3 }, { x: -3, y: -5 });
       assert.approximately(line.length, 2.236, 2.2);
     });
-    it("should calculate length when line having same end points", () => {
+    it("should give the length when line having same end points", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
       assert.strictEqual(line.length, 0);
+    });
+    it("should give the decimal length when the length of the line is decimal", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 11.9 });
+      assert.strictEqual(line.length, 10.1);
     });
   });
 
