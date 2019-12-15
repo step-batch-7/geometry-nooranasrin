@@ -180,6 +180,14 @@ describe("Line", () => {
       const expected = [firstLine, secondLine];
       assert.deepStrictEqual(line.split(), expected);
     });
+    it("should give ", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
+      const actualValue = line.split();
+      const line1 = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
+      const line2 = new Line({ x: 1, y: 2 }, { x: 1, y: 2 });
+      const expectedValue = [line1, line2];
+      assert.deepStrictEqual(actualValue, expectedValue);
+    });
   });
 
   describe("hasPoint", () => {

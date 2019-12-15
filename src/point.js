@@ -6,8 +6,7 @@ const arePointsEqual = function(point1, point2) {
 
 class Point {
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    [this.x, this.y] = [x, y];
   }
 
   isEqual(other) {
