@@ -55,6 +55,7 @@ class Line {
 
   findX(y) {
     if (!isNumInRange([this.endA.x, this.endB.x], y)) return NaN;
+    if (this.slope === 0) return this.endA.x;
     const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return (y - c) / this.slope;
   }

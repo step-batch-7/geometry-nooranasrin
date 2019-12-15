@@ -167,6 +167,10 @@ describe("Line", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 4, y: 4 });
       assert.isNaN(line.findX(5));
     });
+    it("should give any valid x value if there are multiple x values available for a given y", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 1, y: 0 });
+      assert.strictEqual(line.findX(0), 0);
+    });
   });
 
   describe("findY", () => {
