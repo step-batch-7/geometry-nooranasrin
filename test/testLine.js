@@ -10,10 +10,16 @@ describe("Line", () => {
       const otherLine = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
       assert.isTrue(line.isEqual(otherLine));
     });
-    it("should invalidate when the two instances not equal", () => {
-      const line = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
-      const otherLine = new Line({ x: 11, y: 11 }, { x: 12, y: 13 });
-      assert.isFalse(line.isEqual(otherLine));
+    it("should invalidate when lines of unequal start points ", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 5, y: 6 }, { x: 3, y: 4 });
+      assert.notOk(line1.isEqual(line2));
+    });
+
+    it("should invalidate when lines of unequal end points", () => {
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 1, y: 2 }, { x: 7, y: 8 });
+      assert.notOk(line1.isEqual(line2));
     });
     it("should invalidate when one line is not an instance of Line class", () => {
       const line = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
