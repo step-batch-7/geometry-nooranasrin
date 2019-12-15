@@ -75,7 +75,10 @@ class Line {
   }
 
   hasPoint(point) {
-    return point instanceof Point && point.x === this.findX(point.y);
+    if (!(point instanceof Point)) return false;
+    const isXisInRange = isNumInRange([this.endA.x, this.endB.x], point.x);
+    const isYisInRange = isNumInRange([this.endA.y, this.endB.y], point.y);
+    return isXisInRange && isYisInRange;
   }
 }
 
