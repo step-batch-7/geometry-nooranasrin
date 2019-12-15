@@ -13,13 +13,13 @@ describe("Line", () => {
     it("should invalidate when lines of unequal start points ", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 5, y: 6 }, { x: 3, y: 4 });
-      assert.notOk(line1.isEqual(line2));
+      assert.isFalse(line1.isEqual(line2));
     });
 
     it("should invalidate when lines of unequal end points", () => {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 7, y: 8 });
-      assert.notOk(line1.isEqual(line2));
+      assert.isFalse(line1.isEqual(line2));
     });
     it("should invalidate when one line is not an instance of Line class", () => {
       const line = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
@@ -106,6 +106,21 @@ describe("Line", () => {
     it("should invalidate overlapping lines when the line references are same", () => {
       let line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
       assert.isFalse(line1.isParallelTo(line1));
+    });
+    it("should validate if two vertical lines are parallel", function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 0, y: 10 });
+      const line2 = new Line({ x: 2, y: 2 }, { x: 2, y: 20 });
+      assert.isTrue(line1.isParallelTo(line2));
+    });
+    it("should validate if two horizontal lines are parallel", function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 10, y: 0 });
+      const line2 = new Line({ x: 5, y: 2 }, { x: 7, y: 2 });
+      assert.isTrue(line1.isParallelTo(line2));
+    });
+    it("should invalidate when two equal line segments are given", function() {
+      const line1 = new Line({ x: 1, y: 0 }, { x: 5, y: 5 });
+      const line2 = new Line({ x: 1, y: 0 }, { x: 5, y: 5 });
+      assert.isFalse(line1.isParallelTo(line2));
     });
   });
 
