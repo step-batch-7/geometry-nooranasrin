@@ -26,7 +26,7 @@ class Point {
   }
 
   findDistanceTo(other) {
-    if (!(other instanceof Point)) return false;
+    if (!(other instanceof Point)) return NaN;
     return Math.hypot(this.x - other.x, this.y - other.y);
   }
 }

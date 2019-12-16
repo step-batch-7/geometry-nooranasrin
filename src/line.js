@@ -40,10 +40,12 @@ class Line {
 
   isEqual(other) {
     if (!(other instanceof Line)) return false;
-    return (arePointsEqual(this.endA, other.endA) && 
-    arePointsEqual(this.endB, other.endB)) || 
-    (arePointsEqual(this.endA, other.endB) &&
-    arePointsEqual(this.endB, other.endA));
+    return (
+      (arePointsEqual(this.endA, other.endA) &&
+        arePointsEqual(this.endB, other.endB)) ||
+      (arePointsEqual(this.endA, other.endB) &&
+        arePointsEqual(this.endB, other.endA))
+    );
   }
 
   isParallelTo(other) {
@@ -71,7 +73,7 @@ class Line {
   split() {
     const middleX = getPoint(this.endA.x, this.endB.x);
     const middleY = getPoint(this.endA.y, this.endB.y);
-    const middlePoint = new Point(middleX,middleY);
+    const middlePoint = new Point(middleX, middleY);
     return [new Line(this.endA, middlePoint), new Line(middlePoint, this.endB)];
   }
 
