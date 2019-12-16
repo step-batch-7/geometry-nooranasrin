@@ -102,6 +102,10 @@ class Line {
   findPointFromStart(distance) {
     return getPointInADistance(this, distance);
   }
+
+  findPointFromEnd(distance) {
+    return getPointInADistance(new Line(this.endA, this.endB), distance);
+  }
 }
 
 module.exports = Line;

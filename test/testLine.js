@@ -306,4 +306,31 @@ describe("Line", () => {
       assert.isTrue(point.isEqual(pointInDistance));
     });
   });
+
+  describe("findPointFromEnd", () => {
+    it("should give a point on the line in given distance in the forward direction when point is in x axis", () => {
+      const line = new Line({ x: 5, y: 0 }, { x: 0, y: 0 });
+      const point = new Point(3, 0);
+      const pointInDistance = line.findPointFromEnd(2);
+      assert.isTrue(point.isEqual(pointInDistance));
+    });
+    it("should give a point on the line in given distance in the forward direction when point is in y axis", () => {
+      const line = new Line({ x: 0, y: 5 }, { x: 0, y: 0 });
+      const point = new Point(0, 3);
+      const pointInDistance = line.findPointFromEnd(2);
+      assert.isTrue(point.isEqual(pointInDistance));
+    });
+    it("should give a point on the line in given distance in the forward direction when all the coordinates are positive", () => {
+      const line = new Line({ x: 6, y: 8 }, { x: 0, y: 0 });
+      const point = new Point(3, 4);
+      const pointInDistance = line.findPointFromEnd(5);
+      assert.isTrue(point.isEqual(pointInDistance));
+    });
+    it("should give a point on the line in given distance in the forward direction when any of the coordinate is negative", () => {
+      const line = new Line({ x: -6, y: -8 }, { x: 0, y: 0 });
+      const point = new Point(-3, -4);
+      const pointInDistance = line.findPointFromEnd(5);
+      assert.isTrue(point.isEqual(pointInDistance));
+    });
+  });
 });
