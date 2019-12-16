@@ -58,4 +58,27 @@ describe("Circle", () => {
       assert.strictEqual(circle.perimeter, 0);
     });
   });
+
+  describe("hasPoint", () => {
+    it("should validate a point that is on the circumference of circle and on the x axis", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(5, 0);
+      assert.isTrue(circle.hasPoint(point));
+    });
+    it("should validate a point that is on the circumference of circle and on the y axis", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 5);
+      assert.isTrue(circle.hasPoint(point));
+    });
+    it("should invalidate a point that is not on the circumference of circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 6);
+      assert.isFalse(circle.hasPoint(point));
+    });
+    it("should invalidate a point that is not an instance of class Point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = { x: 0, y: 5 };
+      assert.isFalse(circle.hasPoint(point));
+    });
+  });
 });
