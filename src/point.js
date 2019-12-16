@@ -5,11 +5,6 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
-const isNumInRange = function(range, coordinate) {
-  const [start, end] = range.sort();
-  return coordinate >= start && coordinate <= end;
-};
-
 class Point {
   constructor(x, y) {
     [this.x, this.y] = [x, y];

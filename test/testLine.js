@@ -191,6 +191,10 @@ describe("Line", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 1, y: 0 });
       assert.strictEqual(line.findX(0), 0);
     });
+    it("should give valid whe line is parallel to y axis and has a corresponding point", function() {
+      const line = new Line({ x: 4, y: 0 }, { x: 4, y: 4 });
+      assert.strictEqual(line.findX(3), 4);
+    });
   });
 
   describe("findY", () => {
@@ -278,6 +282,16 @@ describe("Line", () => {
       const point = new Point(5, 5);
       assert.isTrue(line.hasPoint(point));
     });
+    it("should invalidate a point that is in the same line but not in the same segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(2, 3);
+      assert.isFalse(line.hasPoint(point));
+    });
+    it("should invalidate a point that is not an instance of class Point", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = { x: 2, y: 3 };
+      assert.isFalse(line.hasPoint(point));
+    });
   });
 
   describe("findPointFromStart", () => {
@@ -305,6 +319,12 @@ describe("Line", () => {
       const pointInDistance = line.findPointFromStart(5);
       assert.isTrue(point.isEqual(pointInDistance));
     });
+    it("should give undefined when the distance is not a number", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -6, y: -8 });
+      const point = new Point(-3, -4);
+      const pointInDistance = line.findPointFromStart("hai");
+      assert.isUndefined(pointInDistance);
+    });
   });
 
   describe("findPointFromEnd", () => {
@@ -331,6 +351,12 @@ describe("Line", () => {
       const point = new Point(-3, -4);
       const pointInDistance = line.findPointFromEnd(5);
       assert.isTrue(point.isEqual(pointInDistance));
+    });
+    it("should give undefined when the distance is not a number", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -6, y: -8 });
+      const point = new Point(-3, -4);
+      const pointInDistance = line.findPointFromEnd("hai");
+      assert.isUndefined(pointInDistance);
     });
   });
 });

@@ -5,10 +5,6 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
-const getYIntercept = function(x, y, m) {
-  return y - m * x;
-};
-
 const getPointInADistance = function(line, distance) {
   const length = line.length;
   const ratio = distance / length;
@@ -25,8 +21,8 @@ const areCollinear = function(pointA, pointB, pointC) {
 };
 
 const isNumInRange = function(range, coordinate) {
-  const [start, end] = range.sort();
-  return coordinate >= start && coordinate <= end;
+  const [endA, end] = range.sort();
+  return coordinate >= endA && coordinate <= end;
 };
 
 const getPoint = function(coordinate1, coordinate2) {
@@ -72,17 +68,16 @@ class Line {
   }
 
   findX(y) {
-    if (!isNumInRange([this.endA.x, this.endB.x], y)) return NaN;
+    if (!isNumInRange([this.endA.y, this.endB.y], y)) return NaN;
     if (this.slope === 0) return this.endA.x;
-    const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
-    return (y - c) / this.slope;
+    return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
-    if (!isNumInRange([this.endA.y, this.endB.y], x)) return NaN;
+    if (!isNumInRange([this.endA.x, this.endB.x], x)) return NaN;
     if (this.slope === Infinity) return this.endA.y;
-    const c = getYIntercept(this.endA.x, this.endA.y, this.slope);
-    return this.slope * x + c;
+    const dx = x - this.endA.x;
+    return dx * this.slope + this.endA.y;
   }
 
   split() {
@@ -94,16 +89,20 @@ class Line {
 
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const isXisInRange = isNumInRange([this.endA.x, this.endB.x], point.x);
-    const isYisInRange = isNumInRange([this.endA.y, this.endB.y], point.y);
-    return isXisInRange && isYisInRange;
+    const isXInRange = isNumInRange([this.endA.x, this.endB.x], point.x);
+    const isYInRange = isNumInRange([this.endA.y, this.endB.y], point.y);
+    return (
+      isXInRange && isYInRange && areCollinear(this.endA, this.endB, point)
+    );
   }
 
   findPointFromStart(distance) {
+    if (!(typeof distance == "number")) return undefined;
     return getPointInADistance(this, distance);
   }
 
   findPointFromEnd(distance) {
+    if (!(typeof distance == "number")) return undefined;
     return getPointInADistance(new Line(this.endA, this.endB), distance);
   }
 }
