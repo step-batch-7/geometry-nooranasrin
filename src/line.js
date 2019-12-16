@@ -40,9 +40,10 @@ class Line {
 
   isEqual(other) {
     if (!(other instanceof Line)) return false;
-    const areEndAEqual = arePointsEqual(this.endA, other.endA);
-    const areEndBEqual = arePointsEqual(this.endB, other.endB);
-    return areEndAEqual && areEndBEqual;
+    return (arePointsEqual(this.endA, other.endA) && 
+    arePointsEqual(this.endB, other.endB)) || 
+    (arePointsEqual(this.endA, other.endB) &&
+    arePointsEqual(this.endB, other.endA));
   }
 
   isParallelTo(other) {
