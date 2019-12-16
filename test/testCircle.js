@@ -36,4 +36,15 @@ describe("Circle", () => {
       assert.strictEqual(circle.toString(), "[Circle @(1,2) radius 5]");
     });
   });
+
+  describe("area", () => {
+    it("should give the area of a circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 1);
+      assert.approximately(circle.area, 3.14, 3.14);
+    });
+    it("should give 0 as area when radius is 0", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 0);
+      assert.strictEqual(circle.area, 0);
+    });
+  });
 });
