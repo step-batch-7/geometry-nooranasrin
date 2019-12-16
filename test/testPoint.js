@@ -92,4 +92,37 @@ describe("Point", () => {
       assert.isNaN(point1.findDistanceTo(point2));
     });
   });
+
+  describe("isOn", () => {
+    it("should validate a point that is in the line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(4, 4);
+      assert.isTrue(point.isOn(line));
+    });
+    it("should validate a point that is in the endA of line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(0, 0);
+      assert.isTrue(point.isOn(line));
+    });
+    it("should validate a point that is in the endB of line", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(10, 10);
+      assert.isTrue(point.isOn(line));
+    });
+    it("should invalidate a point that is in the same line but not in the same segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
+      const point = new Point(11, 11);
+      assert.isFalse(point.isOn(line));
+    });
+    it("should validate a point that is parallel to x axis and given a point on the line", () => {
+      const line = new Line({ x: 0, y: 5 }, { x: 10, y: 5 });
+      const point = new Point(2, 5);
+      assert.isTrue(point.isOn(line));
+    });
+    it("should validate a point that is parallel to y axis and given a point on the line", () => {
+      const line = new Line({ x: 5, y: 0 }, { x: 5, y: 10 });
+      const point = new Point(5, 5);
+      assert.isTrue(point.isOn(line));
+    });
+  });
 });

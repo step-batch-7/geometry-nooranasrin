@@ -35,6 +35,10 @@ class Point {
     if (!(other instanceof Point)) return NaN;
     return Math.hypot(this.x - other.x, this.y - other.y);
   }
+
+  isOn(line) {
+    return line.hasPoint(this);
+  }
 }
 
 module.exports = Point;
