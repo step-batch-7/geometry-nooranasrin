@@ -45,11 +45,11 @@ class Line {
     return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
   }
 
-  isEqual(other) {
+  isEqualTo(other) {
     if (!(other instanceof Line)) return false;
     return (
-      (this.endA.isEqual(other.endA) && this.endB.isEqual(other.endB)) ||
-      (this.endA.isEqual(other.endB) && this.endB.isEqual(other.endA))
+      (this.endA.isEqualTo(other.endA) && this.endB.isEqualTo(other.endB)) ||
+      (this.endA.isEqualTo(other.endB) && this.endB.isEqualTo(other.endA))
     );
   }
 
