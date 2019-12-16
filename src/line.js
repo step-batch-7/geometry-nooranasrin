@@ -4,6 +4,8 @@ const Point = require("./point");
 const getPointInADistance = function(line, distance) {
   const length = line.length;
   const ratio = distance / length;
+  if (!(typeof distance == "number") || ratio > 1 || ratio < 0)
+    return undefined;
   const xRatio = (1 - ratio) * line.endA.x + ratio * line.endB.x;
   const yRatio = (1 - ratio) * line.endA.y + ratio * line.endB.y;
   return new Point(xRatio, yRatio);
@@ -91,12 +93,10 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    if (!(typeof distance == "number")) return undefined;
     return getPointInADistance(this, distance);
   }
 
   findPointFromEnd(distance) {
-    if (!(typeof distance == "number")) return undefined;
     return getPointInADistance(new Line(this.endA, this.endB), distance);
   }
 }
