@@ -35,7 +35,7 @@ describe("Line", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
       assert.isTrue(line.isEqual(line));
     });
-     it("should validate when start of one line is equal to end of other line and vise versa", () => {
+    it("should validate when start of one line is equal to end of other line and vise versa", () => {
       const line = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
       const otherLine = new Line({ x: 12, y: 13 }, { x: 10, y: 11 });
       assert.isTrue(line.isEqual(otherLine));
@@ -253,7 +253,7 @@ describe("Line", () => {
       const point = new Point(11, 11);
       assert.isFalse(line.hasPoint(point));
     });
-     it("should validate a point that is parallel to x axis and given a point on the line", () => {
+    it("should validate a point that is parallel to x axis and given a point on the line", () => {
       const line = new Line({ x: 0, y: 5 }, { x: 10, y: 5 });
       const point = new Point(2, 5);
       assert.isTrue(line.hasPoint(point));

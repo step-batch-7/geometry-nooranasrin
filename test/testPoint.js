@@ -54,4 +54,36 @@ describe("Point", () => {
       assert.isTrue(point.isEqual(copy));
     });
   });
+
+  describe("findDistanceTo", () => {
+    it("should give the distance when the two points are positive", () => {
+      const point1 = new Point(2, 1);
+      const point2 = new Point(6, 4);
+      assert.strictEqual(point1.findDistanceTo(point2), 5);
+    });
+    it("should give the distance when any one of coordinate is negative", () => {
+      const point1 = new Point(-2, 3);
+      const point2 = new Point(5, 2);
+      assert.approximately(point1.findDistanceTo(point2), 7.07, 7.07);
+    });
+    it("should give the distance when all the coordinates are negative", () => {
+      const point1 = new Point(-2, -3);
+      const point2 = new Point(-3, -5);
+      assert.approximately(point1.findDistanceTo(point2), 2.236, 2.2);
+    });
+    it("should give distance as 0 when both the points are equal", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 2);
+      assert.strictEqual(point1.findDistanceTo(point2), 0);
+    });
+    it("should give the decimal distance when the distance between two points are decimal value", function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(3, 11.9);
+      assert.strictEqual(point1.findDistanceTo(point2), 10.1);
+    });
+    it("should give distance as 0 when the reference of two points are equal", function() {
+      const point1 = new Point(1, 2);
+      assert.strictEqual(point1.findDistanceTo(point1), 0);
+    });
+  });
 });
