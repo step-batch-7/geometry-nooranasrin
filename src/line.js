@@ -9,6 +9,13 @@ const getYIntercept = function(x, y, m) {
   return y - m * x;
 };
 
+const areCollinear = function(pointA, pointB, pointC) {
+  const [x1, y1] = [pointA.x, pointA.y];
+  const [x2, y2] = [pointB.x, pointB.y];
+  const [x3, y3] = [pointC.x, pointC.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
+};
+
 const isNumInRange = function(range, coordinate) {
   const [start, end] = range.sort();
   return coordinate >= start && coordinate <= end;
@@ -50,10 +57,10 @@ class Line {
 
   isParallelTo(other) {
     if (!(other instanceof Line)) return false;
-    const isYInterceptNotEqual =
-      getYIntercept(this.endA.x, this.endA.y, this.slope) !=
-      getYIntercept(other.endA.x, other.endA.y, other.slope);
-    return isYInterceptNotEqual && this.slope === other.slope;
+    return (
+      this.slope === other.slope &&
+      !areCollinear(this.endA, this.endB, other.endA)
+    );
   }
 
   findX(y) {
