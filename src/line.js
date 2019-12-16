@@ -9,6 +9,14 @@ const getYIntercept = function(x, y, m) {
   return y - m * x;
 };
 
+const getPointInADistance = function(line, distance) {
+  const length = line.length;
+  const ratio = distance / length;
+  const xRatio = (1 - ratio) * line.endA.x + ratio * line.endB.x;
+  const yRatio = (1 - ratio) * line.endA.y + ratio * line.endB.y;
+  return new Point(xRatio, yRatio);
+};
+
 const areCollinear = function(pointA, pointB, pointC) {
   const [x1, y1] = [pointA.x, pointA.y];
   const [x2, y2] = [pointB.x, pointB.y];
@@ -89,6 +97,10 @@ class Line {
     const isXisInRange = isNumInRange([this.endA.x, this.endB.x], point.x);
     const isYisInRange = isNumInRange([this.endA.y, this.endB.y], point.y);
     return isXisInRange && isYisInRange;
+  }
+
+  findPointFromStart(distance) {
+    return getPointInADistance(this, distance);
   }
 }
 

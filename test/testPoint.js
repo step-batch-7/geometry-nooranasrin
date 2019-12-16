@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Point = require("../src/point");
+const Line = require("../src/line");
 
 describe("Point", () => {
   describe("isEqual", () => {
