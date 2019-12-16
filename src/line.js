@@ -1,10 +1,6 @@
 "use strict";
 const Point = require("./point");
 
-const arePointsEqual = function(point1, point2) {
-  return point1.x === point2.x && point1.y === point2.y;
-};
-
 const getPointInADistance = function(line, distance) {
   const length = line.length;
   const ratio = distance / length;
@@ -31,8 +27,8 @@ const getPoint = function(coordinate1, coordinate2) {
 
 class Line {
   constructor(endA, endB) {
-    this.endA = { x: endA.x, y: endA.y };
-    this.endB = { x: endB.x, y: endB.y };
+    this.endA = new Point(endA.x, endA.y);
+    this.endB = new Point(endB.x, endB.y);
   }
 
   toString() {
@@ -52,10 +48,8 @@ class Line {
   isEqual(other) {
     if (!(other instanceof Line)) return false;
     return (
-      (arePointsEqual(this.endA, other.endA) &&
-        arePointsEqual(this.endB, other.endB)) ||
-      (arePointsEqual(this.endA, other.endB) &&
-        arePointsEqual(this.endB, other.endA))
+      (this.endA.isEqual(other.endA) && this.endB.isEqual(other.endB)) ||
+      (this.endA.isEqual(other.endB) && this.endB.isEqual(other.endA))
     );
   }
 
