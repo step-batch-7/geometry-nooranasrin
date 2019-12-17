@@ -22,10 +22,10 @@ class Rectangle {
     const endA = this.diagonalEndA;
     const endB = this.diagonalEndB;
     return (
-      this.vertexA.isEqualTo(other.vertexA) &&
-      this.vertexB.isEqualTo(other.vertexB) &&
-      this.vertexC.isEqualTo(other.vertexC) &&
-      this.vertexD.isEqualTo(other.vertexD)
+      (this.vertexA.isEqualTo(other.vertexA) &&
+        this.vertexC.isEqualTo(other.vertexC)) ||
+      (this.vertexA.isEqualTo(other.vertexC) &&
+        this.vertexC.isEqualTo(other.vertexA))
     );
   }
 
