@@ -2,3 +2,4 @@ node_modules
 .nyc_output
 node_modules
 executeTests.sh
+.DS_Store
