@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Rectangle = require("../src/rectangle");
+const Point = require("../src/point");
 
 describe("Rectangle", () => {
   describe("isEqualTo", () => {
@@ -74,6 +75,29 @@ describe("Rectangle", () => {
     it("should give perimeter when  coordinates are negative", () => {
       const rectangle1 = new Rectangle({ x: 2, y: 3 }, { x: -3, y: -5 });
       assert.deepStrictEqual(rectangle1.perimeter, 26);
+    });
+  });
+
+  describe("hasPoint", () => {
+    it("should validate a point that is on the side AB", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      assert.isTrue(rectangle.hasPoint(new Point(2, 0)));
+    });
+    it("should validate a point that is on the side BC", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      assert.isTrue(rectangle.hasPoint(new Point(5, 2)));
+    });
+    it("should validate a point that is on the side CD", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      assert.isTrue(rectangle.hasPoint(new Point(2, 4)));
+    });
+    it("should validate a point that is on the side AD", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      assert.isTrue(rectangle.hasPoint(new Point(0, 3)));
+    });
+    it("should invalidate a point that is not an instance of class Point", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      assert.isFalse(rectangle.hasPoint({ x: 0, y: 3 }));
     });
   });
 });

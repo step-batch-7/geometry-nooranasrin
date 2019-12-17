@@ -49,7 +49,14 @@ class Rectangle {
     return Math.abs(2 * (length + breadth));
   }
 
-  hasPoint(point) {}
+  hasPoint(point) {
+    if (!(point instanceof Point)) return false;
+    const AB = new Line(this.vertexA, this.vertexB);
+    const BC = new Line(this.vertexB, this.vertexC);
+    const CD = new Line(this.vertexC, this.vertexD);
+    const AD = new Line(this.vertexD, this.vertexA);
+    return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(AD);
+  }
 }
 
 module.exports = Rectangle;
