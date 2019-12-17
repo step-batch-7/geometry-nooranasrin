@@ -20,7 +20,7 @@ const isNumInRange = function(range, coordinate) {
   return coordinate >= endA && coordinate <= endB;
 };
 
-const getPoint = function(coordinate1, coordinate2) {
+const getMidValue = function(coordinate1, coordinate2) {
   return (coordinate1 + coordinate2) / 2;
 };
 
@@ -77,8 +77,8 @@ class Line {
   }
 
   split() {
-    const middleX = getPoint(this.endA.x, this.endB.x);
-    const middleY = getPoint(this.endA.y, this.endB.y);
+    const middleX = getMidValue(this.endA.x, this.endB.x);
+    const middleY = getMidValue(this.endA.y, this.endB.y);
     const middlePoint = new Point(middleX, middleY);
     return [new Line(this.endA, middlePoint), new Line(middlePoint, this.endB)];
   }
