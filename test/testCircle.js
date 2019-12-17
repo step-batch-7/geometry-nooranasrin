@@ -46,9 +46,9 @@ describe("Circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 0);
       assert.strictEqual(circle.area, 0);
     });
-    it("should give 0 as area when radius is negative", () => {
+    it("should give null as area when radius is negative", () => {
       const circle = new Circle({ x: 0, y: 0 }, -3);
-      assert.strictEqual(circle.area, 0);
+      assert.isNull(circle.area);
     });
   });
 
@@ -61,9 +61,9 @@ describe("Circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 0);
       assert.strictEqual(circle.perimeter, 0);
     });
-    it("should give 0 as perimeter when radius is negative", () => {
+    it("should give null as perimeter when radius is negative", () => {
       const circle = new Circle({ x: 0, y: 0 }, -2);
-      assert.strictEqual(circle.perimeter, 0);
+      assert.isNull(circle.perimeter);
     });
   });
 
@@ -111,7 +111,7 @@ describe("Circle", () => {
     });
     it("should invalidate a point that is not inside the circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 5);
-      const point = new Point(0, 5);
+      const point = new Point(0, 6);
       assert.isFalse(circle.covers(point));
     });
     it("should invalidate a point that is not an instance of class Point", () => {

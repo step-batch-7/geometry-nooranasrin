@@ -16,12 +16,12 @@ class Circle {
   }
 
   get area() {
-    if (this.radius < 0) return 0;
+    if (this.radius < 0) return null;
     return Math.PI * this.radius ** 2;
   }
 
   get perimeter() {
-    if (this.radius < 0) return 0;
+    if (this.radius < 0) return null;
     return 2 * Math.PI * this.radius;
   }
 
@@ -36,7 +36,7 @@ class Circle {
 
   covers(point) {
     if (!(point instanceof Point)) return false;
-    return this.center.findDistanceTo(point) < this.radius;
+    return this.center.findDistanceTo(point) <= this.radius;
   }
 }
 
