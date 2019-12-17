@@ -19,8 +19,6 @@ class Rectangle {
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
-    const endA = this.diagonalEndA;
-    const endB = this.diagonalEndB;
     return (
       (this.vertexA.isEqualTo(other.vertexA) &&
         this.vertexC.isEqualTo(other.vertexC)) ||
@@ -49,8 +47,8 @@ class Rectangle {
 
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const [AB, BC, CD, AD] = getSides(this);
-    return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(AD);
+    const sides = getSides(this);
+    return sides.some(element => point.isOn(element));
   }
 
   covers(point) {
