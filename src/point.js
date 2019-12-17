@@ -30,8 +30,8 @@ class Point {
     return Math.hypot(this.x - other.x, this.y - other.y);
   }
 
-  isOn(line) {
-    return line.hasPoint(this);
+  isOn(shape) {
+    return shape.hasPoint(this);
   }
 }
 
