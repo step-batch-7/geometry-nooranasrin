@@ -39,14 +39,12 @@ class Rectangle {
   }
 
   get area() {
-    const [length] = getSides(this);
-    const [, breadth] = getSides(this);
+    const [length, breadth] = getSides(this);
     return Math.abs(length.length * breadth.length);
   }
 
   get perimeter() {
-    const [length] = getSides(this);
-    const [, breadth] = getSides(this);
+    const [length, breadth] = getSides(this);
     return Math.abs(2 * (length.length + breadth.length));
   }
 
