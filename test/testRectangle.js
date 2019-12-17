@@ -38,4 +38,11 @@ describe("Rectangle", () => {
       assert.strictEqual(rectangle.toString(), "[Rectangle (1,1) to (2,3)]");
     });
   });
+
+  describe("area", () => {
+    it("should return the area when the rectangle is parallel to x and y axis", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      assert.deepStrictEqual(rectangle1.area, 20);
+    });
+  });
 });
