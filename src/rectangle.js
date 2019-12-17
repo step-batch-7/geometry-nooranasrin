@@ -15,11 +15,6 @@ class Rectangle {
   constructor(diagonalEndA, diagonalEndC) {
     this.vertexA = new Point(diagonalEndA.x, diagonalEndA.y);
     this.vertexC = new Point(diagonalEndC.x, diagonalEndC.y);
-
-    Object.defineProperties(this, {
-      vertexA: { writable: false },
-      vertexC: { writable: false }
-    });
   }
 
   isEqualTo(other) {

@@ -2,9 +2,8 @@
 const Point = require("./point");
 
 const areCollinear = function(pointA, pointB, pointC) {
-  const [x1, y1] = [pointA.x, pointA.y];
-  const [x2, y2] = [pointB.x, pointB.y];
-  const [x3, y3] = [pointC.x, pointC.y];
+  const [x1, x2, x3] = [pointA.x, pointB.x, pointC.x];
+  const [y1, y2, y3] = [pointA.y, pointB.y, pointC.y];
   return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
 };
 
