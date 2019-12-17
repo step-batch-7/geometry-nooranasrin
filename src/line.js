@@ -36,7 +36,7 @@ class Line {
   }
 
   get length() {
-    return Math.hypot(this.endB.x - this.endA.x, this.endB.y - this.endA.y);
+    return this.endA.findDistanceTo(this.endB);
   }
 
   get slope() {
