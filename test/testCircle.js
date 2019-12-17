@@ -81,4 +81,12 @@ describe("Circle", () => {
       assert.isFalse(circle.hasPoint(point));
     });
   });
+
+  describe("moveTo", () => {
+    it("should give a circle with given center and radius should be same", () => {
+      const circle1 = new Circle({ x: 1, y: 3 }, 5);
+      const circle2 = new Circle({ x: 1, y: 1 }, 5);
+      assert.isTrue(circle2.isEqualTo(circle1.moveTo({ x: 1, y: 1 })));
+    });
+  });
 });
