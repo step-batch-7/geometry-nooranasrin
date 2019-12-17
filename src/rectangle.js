@@ -4,10 +4,10 @@ const Line = require("./line");
 
 class Rectangle {
   constructor(diagonalEndA, diagonalEndC) {
-    this.vertexA = new Point(diagonalEndA.x, diagonalEndA.y);
-    this.vertexB = new Point(diagonalEndC.x, diagonalEndA.y);
-    this.vertexC = new Point(diagonalEndC.x, diagonalEndC.y);
-    this.vertexD = new Point(diagonalEndA.x, diagonalEndC.y);
+    this.A = new Point(diagonalEndA.x, diagonalEndA.y);
+    this.B = new Point(diagonalEndC.x, diagonalEndA.y);
+    this.C = new Point(diagonalEndC.x, diagonalEndC.y);
+    this.D = new Point(diagonalEndA.x, diagonalEndC.y);
     this.diagonal = new Line(diagonalEndA, diagonalEndC);
 
     Object.defineProperties(this, {
@@ -24,10 +24,10 @@ class Rectangle {
     const endA = this.diagonalEndA;
     const endB = this.diagonalEndB;
     return (
-      this.vertexA.isEqualTo(other.vertexA) &&
-      this.vertexB.isEqualTo(other.vertexB) &&
-      this.vertexC.isEqualTo(other.vertexC) &&
-      this.vertexD.isEqualTo(other.vertexD)
+      this.A.isEqualTo(other.A) &&
+      this.B.isEqualTo(other.B) &&
+      this.C.isEqualTo(other.C) &&
+      this.D.isEqualTo(other.D)
     );
   }
 
@@ -38,23 +38,23 @@ class Rectangle {
   }
 
   get area() {
-    const length = this.vertexA.findDistanceTo(this.vertexB);
-    const breadth = this.vertexB.findDistanceTo(this.vertexC);
+    const length = this.A.findDistanceTo(this.B);
+    const breadth = this.B.findDistanceTo(this.C);
     return Math.abs(length * breadth);
   }
 
   get perimeter() {
-    const length = this.vertexA.findDistanceTo(this.vertexB);
-    const breadth = this.vertexB.findDistanceTo(this.vertexC);
+    const length = this.A.findDistanceTo(this.B);
+    const breadth = this.B.findDistanceTo(this.C);
     return Math.abs(2 * (length + breadth));
   }
 
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const AB = new Line(this.vertexA, this.vertexB);
-    const BC = new Line(this.vertexB, this.vertexC);
-    const CD = new Line(this.vertexC, this.vertexD);
-    const AD = new Line(this.vertexD, this.vertexA);
+    const AB = new Line(this.A, this.B);
+    const BC = new Line(this.B, this.C);
+    const CD = new Line(this.C, this.D);
+    const AD = new Line(this.D, this.A);
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(AD);
   }
 }
