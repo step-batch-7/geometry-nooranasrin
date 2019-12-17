@@ -11,6 +11,11 @@ const getSides = function(rectangle) {
   return [AB, BC, CD, AD];
 };
 
+const isNumInRange = function(range, coordinate) {
+  const [endA, endB] = range.sort((a, b) => a - b);
+  return coordinate > endA && coordinate < endB;
+};
+
 class Rectangle {
   constructor(diagonalEndA, diagonalEndC) {
     this.vertexA = new Point(diagonalEndA.x, diagonalEndA.y);
@@ -54,9 +59,9 @@ class Rectangle {
   covers(point) {
     if (!(point instanceof Point)) return false;
     const [AB, BC, CD, AD] = getSides(this);
-    const [minX, maxX] = [AB.endA.x, AB.endB.x].sort((x1, x2) => x1 - x2);
-    const [minY, maxY] = [AB.endA.y, AD.endB.y].sort((y1, y2) => y1 - y2);
-    return point.x > minX && point.x < maxX && point.y > minY && point.y < maxY;
+    const isXInRange = isNumInRange([AB.endA.x, AB.endB.x], point.x);
+    const isYInRange = isNumInRange([AB.endA.y, AD.endB.y], point.y);
+    return isXInRange && isYInRange;
   }
 }
 
