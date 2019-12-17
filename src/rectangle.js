@@ -31,11 +31,11 @@ class Rectangle {
   }
 
   get area() {
-    return getSide(this, `x`) * getSide(this, `y`);
+    return Math.abs(getSide(this, `x`) * getSide(this, `y`));
   }
 
   get perimeter() {
-    return 2 * (getSide(this, `x`) + getSide(this, `y`));
+    return Math.abs(2 * (getSide(this, `x`) + getSide(this, `y`)));
   }
 }
 

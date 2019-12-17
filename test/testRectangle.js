@@ -40,16 +40,40 @@ describe("Rectangle", () => {
   });
 
   describe("area", () => {
-    it("should return the area when the rectangle is parallel to x and y axis", () => {
+    it("should give the area when the rectangle is parallel to x and y axis", () => {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
       assert.deepStrictEqual(rectangle1.area, 20);
+    });
+    it("should give the 0 when the rectangle is parallel to x and y axis and doesn't have length", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 0 });
+      assert.deepStrictEqual(rectangle1.area, 0);
+    });
+    it("should give the 0 when the rectangle is parallel to x and y axis and doesn't have length", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 4 });
+      assert.deepStrictEqual(rectangle1.area, 0);
+    });
+    it("should give area when  coordinates are negative", () => {
+      const rectangle1 = new Rectangle({ x: 2, y: 3 }, { x: -3, y: -5 });
+      assert.deepStrictEqual(rectangle1.area, 40);
     });
   });
 
   describe("perimeter", () => {
-    it("should return the perimeter when the rectangle is parallel to x and y axis", () => {
+    it("should give the perimeter when the rectangle is parallel to x and y axis", () => {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
       assert.deepStrictEqual(rectangle1.perimeter, 18);
+    });
+    it("should give the 0 when the rectangle is parallel to x and y axis and doesn't have length", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 0 });
+      assert.deepStrictEqual(rectangle1.perimeter, 10);
+    });
+    it("should give the 0 when the rectangle is parallel to x and y axis and doesn't have length", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 4 });
+      assert.deepStrictEqual(rectangle1.perimeter, 8);
+    });
+    it("should give perimeter when  coordinates are negative", () => {
+      const rectangle1 = new Rectangle({ x: 2, y: 3 }, { x: -3, y: -5 });
+      assert.deepStrictEqual(rectangle1.perimeter, 26);
     });
   });
 });
