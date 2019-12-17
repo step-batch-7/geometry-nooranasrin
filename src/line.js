@@ -15,8 +15,9 @@ const areCollinear = function(pointA, pointB, pointC) {
 };
 
 const isNumInRange = function(range, coordinate) {
-  const [endA, end] = range.sort();
-  return coordinate >= endA && coordinate <= end;
+  const endA = Math.min(range[0], range[1]);
+  const endB = Math.max(range[0], range[1]);
+  return coordinate >= endA && coordinate <= endB;
 };
 
 const getPoint = function(coordinate1, coordinate2) {
@@ -40,7 +41,10 @@ class Line {
   }
 
   get slope() {
-    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+    const dx = this.endA.x - this.endB.x;
+    const dy = this.endA.y - this.endB.y;
+    const slope = dy / dx;
+    return slope == -Infinity ? Infinity : slope;
   }
 
   isEqualTo(other) {
@@ -91,11 +95,13 @@ class Line {
   findPointFromStart(distance) {
     const length = this.length;
     const ratio = distance / length;
-    if (distance < 0 || distance > length) return null;
+    if (distance < 0 || distance > length || typeof distance != "number")
+      return null;
     return getPointInADistance(this, ratio);
   }
 
   findPointFromEnd(distance) {
+    if (typeof distance != "number") return null;
     return this.findPointFromStart(this.length - distance);
   }
 }

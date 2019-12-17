@@ -165,6 +165,12 @@ describe("Line", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
       assert.isNaN(line.slope);
     });
+    it("should give Infinity as slope when line is parallel to y-axis and direction is upwards", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 1 });
+      const actualValue = line.slope;
+      const expectedValue = Infinity;
+      assert.strictEqual(actualValue, expectedValue);
+    });
   });
 
   describe("findX", () => {
@@ -223,6 +229,12 @@ describe("Line", () => {
     it("should give any valid y value when there are multiple y values available for a given x", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 1 });
       assert.strictEqual(line.findY(0), 0);
+    });
+    it("should give y value of start point if there are multiple y values available for a given x", function() {
+      const line = new Line({ x: 1, y: 5 }, { x: 1, y: -1 });
+      const actualValue = line.findY(1);
+      const expectedValue = 5;
+      assert.strictEqual(actualValue, expectedValue);
     });
   });
 
