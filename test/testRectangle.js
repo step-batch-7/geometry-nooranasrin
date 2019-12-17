@@ -45,4 +45,11 @@ describe("Rectangle", () => {
       assert.deepStrictEqual(rectangle1.area, 20);
     });
   });
+
+  describe("perimeter", () => {
+    it("should return the perimeter when the rectangle is parallel to x and y axis", () => {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      assert.deepStrictEqual(rectangle1.perimeter, 18);
+    });
+  });
 });
