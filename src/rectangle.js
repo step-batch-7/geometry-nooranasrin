@@ -2,18 +2,23 @@
 const Point = require("./point");
 const Line = require("./line");
 
+const getSides = function(rectangle) {
+  const [vertexA, vertexC] = [rectangle.vertexA, rectangle.vertexC];
+  const AB = new Line(vertexA, new Point(vertexC.x, vertexA.y));
+  const BC = new Line(new Point(vertexC.x, vertexA.y), vertexC);
+  const CD = new Line(vertexC, new Point(vertexA.x, vertexC.y));
+  const AD = new Line(vertexA, new Point(vertexA.x, vertexC.y));
+  return [AB, BC, CD, AD];
+};
+
 class Rectangle {
   constructor(diagonalEndA, diagonalEndC) {
     this.vertexA = new Point(diagonalEndA.x, diagonalEndA.y);
-    this.vertexB = new Point(diagonalEndC.x, diagonalEndA.y);
     this.vertexC = new Point(diagonalEndC.x, diagonalEndC.y);
-    this.vertexD = new Point(diagonalEndA.x, diagonalEndC.y);
 
     Object.defineProperties(this, {
       vertexA: { writable: false },
-      vertexB: { enumerable: true, writable: false },
-      vertexC: { writable: false },
-      vertexD: { enumerable: true, writable: false }
+      vertexC: { writable: false }
     });
   }
 
@@ -36,37 +41,29 @@ class Rectangle {
   }
 
   get area() {
-    const length = this.vertexA.findDistanceTo(this.vertexB);
-    const breadth = this.vertexB.findDistanceTo(this.vertexC);
-    return Math.abs(length * breadth);
+    const [length] = getSides(this);
+    const [, breadth] = getSides(this);
+    return Math.abs(length.length * breadth.length);
   }
 
   get perimeter() {
-    const length = this.vertexA.findDistanceTo(this.vertexB);
-    const breadth = this.vertexB.findDistanceTo(this.vertexC);
-    return Math.abs(2 * (length + breadth));
+    const [length] = getSides(this);
+    const [, breadth] = getSides(this);
+    return Math.abs(2 * (length.length + breadth.length));
   }
 
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const AB = new Line(this.vertexA, this.vertexB);
-    const BC = new Line(this.vertexB, this.vertexC);
-    const CD = new Line(this.vertexC, this.vertexD);
-    const AD = new Line(this.vertexD, this.vertexA);
+    const [AB, BC, CD, AD] = getSides(this);
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(AD);
   }
 
   covers(point) {
     if (!(point instanceof Point)) return false;
-    const x1 = this.vertexA.x;
-    const x2 = this.vertexB.x;
-    const y1 = this.vertexA.y;
-    const y2 = this.vertexC.y;
-    const [minX, maxX] = [x1, x2].sort((x1, x2) => x1 - x2);
-    const [minY, maxY] = [y1, y2].sort((y1, y2) => y1 - y2);
-    return (
-      point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY
-    );
+    const [AB, BC, CD, AD] = getSides(this);
+    const [minX, maxX] = [AB.endA.x, AB.endB.x].sort((x1, x2) => x1 - x2);
+    const [minY, maxY] = [AB.endA.y, AD.endB.y].sort((y1, y2) => y1 - y2);
+    return point.x > minX && point.x < maxX && point.y > minY && point.y < maxY;
   }
 }
 
