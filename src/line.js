@@ -30,8 +30,8 @@ class Line {
   }
 
   toString() {
-    let endA = `(${this.endA.x}, ${this.endA.y})`;
-    let endB = `(${this.endB.x}, ${this.endB.y})`;
+    let endA = `(${this.endA.x},${this.endA.y})`;
+    let endB = `(${this.endB.x},${this.endB.y})`;
     return `[Line ${endA} to ${endB}]`;
   }
 
@@ -91,14 +91,12 @@ class Line {
   findPointFromStart(distance) {
     const length = this.length;
     const ratio = distance / length;
-    if (!(typeof distance == "number") || ratio > 1 || ratio < 0)
-      return undefined;
+    if (distance < 0 || distance > length) return null;
     return getPointInADistance(this, ratio);
   }
 
   findPointFromEnd(distance) {
-    const reversedLine = new Line(this.endA, this.endB);
-    return reversedLine.findPointFromStart(distance);
+    return this.findPointFromStart(this.length - distance);
   }
 }
 

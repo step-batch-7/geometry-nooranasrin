@@ -45,7 +45,7 @@ describe("Line", () => {
   describe("toString", () => {
     it("should give the string format of the object", () => {
       const line = new Line({ x: 10, y: 11 }, { x: 12, y: 13 });
-      assert.strictEqual(line.toString(), "[Line (10, 11) to (12, 13)]");
+      assert.strictEqual(line.toString(), "[Line (10,11) to (12,13)]");
     });
   });
 
@@ -319,44 +319,38 @@ describe("Line", () => {
       const pointInDistance = line.findPointFromStart(5);
       assert.isTrue(point.isEqualTo(pointInDistance));
     });
-    it("should give undefined when the distance is not a number", () => {
-      const line = new Line({ x: 0, y: 0 }, { x: -6, y: -8 });
-      const point = new Point(-3, -4);
-      const pointInDistance = line.findPointFromStart("hai");
-      assert.isUndefined(pointInDistance);
-    });
-  });
 
-  describe("findPointFromEnd", () => {
-    it("should give a point on the line in given distance in the forward direction when point is in x axis", () => {
-      const line = new Line({ x: 5, y: 0 }, { x: 0, y: 0 });
-      const point = new Point(3, 0);
-      const pointInDistance = line.findPointFromEnd(2);
-      assert.isTrue(point.isEqualTo(pointInDistance));
-    });
-    it("should give a point on the line in given distance in the forward direction when point is in y axis", () => {
-      const line = new Line({ x: 0, y: 5 }, { x: 0, y: 0 });
-      const point = new Point(0, 3);
-      const pointInDistance = line.findPointFromEnd(2);
-      assert.isTrue(point.isEqualTo(pointInDistance));
-    });
-    it("should give a point on the line in given distance in the forward direction when all the coordinates are positive", () => {
-      const line = new Line({ x: 6, y: 8 }, { x: 0, y: 0 });
-      const point = new Point(3, 4);
-      const pointInDistance = line.findPointFromEnd(5);
-      assert.isTrue(point.isEqualTo(pointInDistance));
-    });
-    it("should give a point on the line in given distance in the forward direction when any of the coordinate is negative", () => {
-      const line = new Line({ x: -6, y: -8 }, { x: 0, y: 0 });
-      const point = new Point(-3, -4);
-      const pointInDistance = line.findPointFromEnd(5);
-      assert.isTrue(point.isEqualTo(pointInDistance));
-    });
-    it("should give undefined when the distance is not a number", () => {
-      const line = new Line({ x: 0, y: 0 }, { x: -6, y: -8 });
-      const point = new Point(-3, -4);
-      const pointInDistance = line.findPointFromEnd("hai");
-      assert.isUndefined(pointInDistance);
+    describe("findPointFromEnd", () => {
+      it("should give a point on the line in given distance in the forward direction when point is in x axis", () => {
+        const line = new Line({ x: 5, y: 0 }, { x: 0, y: 0 });
+        const point = new Point(2, 0);
+        const pointInDistance = line.findPointFromEnd(2);
+        assert.isTrue(point.isEqualTo(pointInDistance));
+      });
+      it("should give a point on the line in given distance in the forward direction when point is in y axis", () => {
+        const line = new Line({ x: 0, y: 5 }, { x: 0, y: 0 });
+        const point = new Point(0, 2);
+        const pointInDistance = line.findPointFromEnd(2);
+        assert.isTrue(point.isEqualTo(pointInDistance));
+      });
+      it("should give a point on the line in given distance in the forward direction when all the coordinates are positive", () => {
+        const line = new Line({ x: 6, y: 8 }, { x: 0, y: 0 });
+        const point = new Point(3, 4);
+        const pointInDistance = line.findPointFromEnd(5);
+        assert.isTrue(point.isEqualTo(pointInDistance));
+      });
+      it("should give start Point if given distance is equal to length", function() {
+        const line = new Line({ x: 0, y: 1 }, { x: 0, y: 9 });
+        const actualValue = line.findPointFromEnd(8);
+        const point = new Point(0, 1);
+        assert.isTrue(point.isEqualTo(actualValue));
+      });
+      it("should give a point on the line in given distance in the forward direction when any of the coordinate is negative", () => {
+        const line = new Line({ x: -6, y: -8 }, { x: 0, y: 0 });
+        const point = new Point(-3, -4);
+        const pointInDistance = line.findPointFromEnd(5);
+        assert.isTrue(point.isEqualTo(pointInDistance));
+      });
     });
   });
 });
