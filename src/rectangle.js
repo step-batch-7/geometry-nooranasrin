@@ -6,6 +6,7 @@ class Rectangle {
     this.diagonalEndA = new Point(diagonalEndA.x, diagonalEndA.y);
     this.diagonalEndB = new Point(diagonalEndB.x, diagonalEndB.y);
   }
+
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
     const endA = this.diagonalEndA;
@@ -15,6 +16,12 @@ class Rectangle {
         endB.isEqualTo(other.diagonalEndB)) ||
       (endA.isEqualTo(other.diagonalEndB) && endB.isEqualTo(other.diagonalEndA))
     );
+  }
+
+  toString() {
+    let endA = `(${this.diagonalEndA.x},${this.diagonalEndA.y})`;
+    let endB = `(${this.diagonalEndB.x},${this.diagonalEndB.y})`;
+    return `[Rectangle ${endA} to ${endB}]`;
   }
 }
 

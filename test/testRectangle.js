@@ -31,4 +31,11 @@ describe("Rectangle", () => {
       assert.isTrue(circle.isEqualTo(circle));
     });
   });
+
+  describe("toString", () => {
+    it("should give the string format of the instance", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      assert.strictEqual(rectangle.toString(), "[Rectangle (1,1) to (2,3)]");
+    });
+  });
 });
