@@ -1,11 +1,7 @@
 "use strict";
 const Point = require("./point");
 
-const getPointInADistance = function(line, distance) {
-  const length = line.length;
-  const ratio = distance / length;
-  if (!(typeof distance == "number") || ratio > 1 || ratio < 0)
-    return undefined;
+const getPointInADistance = function(line, ratio) {
   const xRatio = (1 - ratio) * line.endA.x + ratio * line.endB.x;
   const yRatio = (1 - ratio) * line.endA.y + ratio * line.endB.y;
   return new Point(xRatio, yRatio);
@@ -93,11 +89,16 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    return getPointInADistance(this, distance);
+    const length = this.length;
+    const ratio = distance / length;
+    if (!(typeof distance == "number") || ratio > 1 || ratio < 0)
+      return undefined;
+    return getPointInADistance(this, ratio);
   }
 
   findPointFromEnd(distance) {
-    return getPointInADistance(new Line(this.endA, this.endB), distance);
+    const reversedLine = new Line(this.endA, this.endB);
+    return reversedLine.findPointFromStart(distance);
   }
 }
 
