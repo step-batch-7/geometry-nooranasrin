@@ -8,13 +8,11 @@ class Rectangle {
     this.vertexB = new Point(diagonalEndC.x, diagonalEndA.y);
     this.vertexC = new Point(diagonalEndC.x, diagonalEndC.y);
     this.vertexD = new Point(diagonalEndA.x, diagonalEndC.y);
-    this.diagonal = new Line(diagonalEndA, diagonalEndC);
 
     Object.defineProperties(this, {
-      diagonal: { writable: false },
-      vertexA: { enumerable: true, writable: false },
+      vertexA: { writable: false },
       vertexB: { enumerable: true, writable: false },
-      vertexC: { enumerable: true, writable: false },
+      vertexC: { writable: false },
       vertexD: { enumerable: true, writable: false }
     });
   }
@@ -32,8 +30,8 @@ class Rectangle {
   }
 
   toString() {
-    let endA = `(${this.diagonal.endA.x},${this.diagonal.endA.y})`;
-    let endB = `(${this.diagonal.endB.x},${this.diagonal.endB.y})`;
+    let endA = `(${this.vertexA.x},${this.vertexA.y})`;
+    let endB = `(${this.vertexC.x},${this.vertexC.y})`;
     return `[Rectangle ${endA} to ${endB}]`;
   }
 
@@ -58,7 +56,18 @@ class Rectangle {
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(AD);
   }
 
-  covers(point) {}
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+    const x1 = this.vertexA.x;
+    const x2 = this.vertexB.x;
+    const y1 = this.vertexA.y;
+    const y2 = this.vertexC.y;
+    const [minX, maxX] = [x1, x2].sort((x1, x2) => x1 - x2);
+    const [minY, maxY] = [y1, y2].sort((y1, y2) => y1 - y2);
+    return (
+      point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY
+    );
+  }
 }
 
 module.exports = Rectangle;
