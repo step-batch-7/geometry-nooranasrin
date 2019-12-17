@@ -1,12 +1,6 @@
 "use strict";
 const Point = require("./point");
 
-const getPointInADistance = function(line, ratio) {
-  const xRatio = (1 - ratio) * line.endA.x + ratio * line.endB.x;
-  const yRatio = (1 - ratio) * line.endA.y + ratio * line.endB.y;
-  return new Point(xRatio, yRatio);
-};
-
 const areCollinear = function(pointA, pointB, pointC) {
   const [x1, y1] = [pointA.x, pointA.y];
   const [x2, y2] = [pointB.x, pointB.y];
@@ -15,13 +9,8 @@ const areCollinear = function(pointA, pointB, pointC) {
 };
 
 const isNumInRange = function(range, coordinate) {
-  const endA = Math.min(range[0], range[1]);
-  const endB = Math.max(range[0], range[1]);
+  const [endA, endB] = range.sort((a, b) => a - b);
   return coordinate >= endA && coordinate <= endB;
-};
-
-const getMidValue = function(coordinate1, coordinate2) {
-  return (coordinate1 + coordinate2) / 2;
 };
 
 class Line {
@@ -31,9 +20,7 @@ class Line {
   }
 
   toString() {
-    let endA = `(${this.endA.x},${this.endA.y})`;
-    let endB = `(${this.endB.x},${this.endB.y})`;
-    return `[Line ${endA} to ${endB}]`;
+    return `[Line (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
   }
 
   get length() {
@@ -41,9 +28,7 @@ class Line {
   }
 
   get slope() {
-    const dx = this.endA.x - this.endB.x;
-    const dy = this.endA.y - this.endB.y;
-    const slope = dy / dx;
+    const slope = (this.endA.y - this.endB.y) / (this.endA.x - this.endB.x);
     return slope == -Infinity ? Infinity : slope;
   }
 
@@ -57,10 +42,8 @@ class Line {
 
   isParallelTo(other) {
     if (!(other instanceof Line)) return false;
-    return (
-      this.slope === other.slope &&
-      !areCollinear(this.endA, this.endB, other.endA)
-    );
+    const arePointsCollinear = areCollinear(this.endA, this.endB, other.endA);
+    return this.slope === other.slope && !arePointsCollinear;
   }
 
   findX(y) {
@@ -77,8 +60,8 @@ class Line {
   }
 
   split() {
-    const middleX = getMidValue(this.endA.x, this.endB.x);
-    const middleY = getMidValue(this.endA.y, this.endB.y);
+    const middleX = (this.endA.x + this.endB.x) / 2;
+    const middleY = (this.endA.y + this.endB.y) / 2;
     const middlePoint = new Point(middleX, middleY);
     return [new Line(this.endA, middlePoint), new Line(middlePoint, this.endB)];
   }
@@ -87,21 +70,20 @@ class Line {
     if (!(point instanceof Point)) return false;
     const isXInRange = isNumInRange([this.endA.x, this.endB.x], point.x);
     const isYInRange = isNumInRange([this.endA.y, this.endB.y], point.y);
-    return (
-      isXInRange && isYInRange && areCollinear(this.endA, this.endB, point)
-    );
+    const arePointsCollinear = areCollinear(this.endA, this.endB, point);
+    return isXInRange && isYInRange && arePointsCollinear;
   }
 
   findPointFromStart(distance) {
-    const length = this.length;
-    const ratio = distance / length;
-    if (distance < 0 || distance > length || typeof distance != "number")
-      return null;
-    return getPointInADistance(this, ratio);
+    if (typeof distance != "number" || distance === NaN) return null;
+    const ratio = distance / this.length;
+    if (distance < 0 || distance > this.length) return null;
+    const xRatio = (1 - ratio) * this.endA.x + ratio * this.endB.x;
+    const yRatio = (1 - ratio) * this.endA.y + ratio * this.endB.y;
+    return new Point(xRatio, yRatio);
   }
 
   findPointFromEnd(distance) {
-    if (typeof distance != "number") return null;
     return this.findPointFromStart(this.length - distance);
   }
 }
