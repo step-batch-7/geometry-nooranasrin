@@ -16,10 +16,12 @@ class Circle {
   }
 
   get area() {
+    if (this.radius < 0) return 0;
     return Math.PI * this.radius ** 2;
   }
 
   get perimeter() {
+    if (this.radius < 0) return 0;
     return 2 * Math.PI * this.radius;
   }
 

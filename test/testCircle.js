@@ -46,6 +46,10 @@ describe("Circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 0);
       assert.strictEqual(circle.area, 0);
     });
+    it("should give 0 as area when radius is negative", () => {
+      const circle = new Circle({ x: 0, y: 0 }, -3);
+      assert.strictEqual(circle.area, 0);
+    });
   });
 
   describe("perimeter", () => {
@@ -55,6 +59,10 @@ describe("Circle", () => {
     });
     it("should give 0 as perimeter when radius is 0", () => {
       const circle = new Circle({ x: 0, y: 0 }, 0);
+      assert.strictEqual(circle.perimeter, 0);
+    });
+    it("should give 0 as perimeter when radius is negative", () => {
+      const circle = new Circle({ x: 0, y: 0 }, -2);
       assert.strictEqual(circle.perimeter, 0);
     });
   });
