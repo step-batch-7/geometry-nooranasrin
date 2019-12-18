@@ -331,6 +331,18 @@ describe("Line", () => {
       const pointInDistance = line.findPointFromStart(5);
       assert.isTrue(point.isEqualTo(pointInDistance));
     });
+    it("should give null when the distance is not a number", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -6, y: -8 });
+      const point = new Point(-3, -4);
+      const pointInDistance = line.findPointFromStart(`hai`);
+      assert.isNull(pointInDistance);
+    });
+    it("should give null when the distance is less than zero or greater than the line length", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -6, y: -8 });
+      const point = new Point(-3, -4);
+      const pointInDistance = line.findPointFromStart(-2);
+      assert.isNull(pointInDistance);
+    });
 
     describe("findPointFromEnd", () => {
       it("should give a point on the line in given distance in the forward direction when point is in x axis", () => {

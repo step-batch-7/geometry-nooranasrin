@@ -28,8 +28,13 @@ describe("Rectangle", () => {
       assert.isFalse(rectangle1.isEqualTo(rectangle2));
     });
     it("should validate when the reference of both the lines are same", () => {
-      const circle = new Rectangle({ x: 10, y: 11 }, { x: 12, y: 13 });
-      assert.isTrue(circle.isEqualTo(circle));
+      const rectangle = new Rectangle({ x: 10, y: 11 }, { x: 12, y: 13 });
+      assert.isTrue(rectangle.isEqualTo(rectangle));
+    });
+    it("should validate when start of one line is equal to end of other line and vise versa", () => {
+      const rectangle1 = new Rectangle({ x: 10, y: 11 }, { x: 12, y: 13 });
+      const rectangle2 = new Rectangle({ x: 12, y: 13 }, { x: 10, y: 11 });
+      assert.isTrue(rectangle1.isEqualTo(rectangle2));
     });
   });
 
