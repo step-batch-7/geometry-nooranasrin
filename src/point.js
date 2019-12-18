@@ -3,10 +3,7 @@
 class Point {
   constructor(x, y) {
     [this.x, this.y] = [x, y];
-    Object.defineProperties(this, {
-      x: { writable: false },
-      y: { writable: false }
-    });
+    Object.freeze(this);
   }
 
   isEqualTo(other) {
