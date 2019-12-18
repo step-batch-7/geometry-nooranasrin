@@ -295,7 +295,7 @@ describe("Line", () => {
     });
     it("should invalidate a point that is not an instance of class Point", () => {
       const line = new Line({ x: 0, y: 0 }, { x: 10, y: 10 });
-      const point = { x: 2, y: 3 };
+      const point = { x: 3, y: 3 };
       assert.isFalse(line.hasPoint(point));
     });
   });
