@@ -36,6 +36,11 @@ describe("Rectangle", () => {
       const rectangle2 = new Rectangle({ x: 12, y: 13 }, { x: 10, y: 11 });
       assert.isTrue(rectangle1.isEqualTo(rectangle2));
     });
+    it("should validate when given diagonal is the other diagonal of the same rectangle", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      const rectangle2 = new Rectangle({ x: 2, y: 1 }, { x: 1, y: 3 });
+      assert.isTrue(rectangle1.isEqualTo(rectangle2));
+    });
   });
 
   describe("toString", () => {

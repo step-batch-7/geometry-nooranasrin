@@ -24,11 +24,14 @@ class Rectangle {
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
+    const [AB, , , AD] = getSides(this);
+    const vertexB = AB.endB;
+    const vertexD = AD.endB;
+    const diagonal1 = new Line(this.vertexA, this.vertexC);
+    const diagonal2 = new Line(vertexB, vertexD);
+    const otherDiagonal = new Line(other.vertexA, other.vertexC);
     return (
-      (this.vertexA.isEqualTo(other.vertexA) &&
-        this.vertexC.isEqualTo(other.vertexC)) ||
-      (this.vertexA.isEqualTo(other.vertexC) &&
-        this.vertexC.isEqualTo(other.vertexA))
+      diagonal1.isEqualTo(otherDiagonal) || diagonal2.isEqualTo(otherDiagonal)
     );
   }
 
