@@ -69,11 +69,11 @@ describe("Rectangle", () => {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
       assert.deepStrictEqual(rectangle1.perimeter, 18);
     });
-    it("should give the 0 when the rectangle is parallel to x and y axis and doesn't have length", () => {
+    it("should give the breadth when the rectangle is parallel to x and y axis and doesn't have length", () => {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 0 });
       assert.deepStrictEqual(rectangle1.perimeter, 10);
     });
-    it("should give the 0 when the rectangle is parallel to x and y axis and doesn't have breadth", () => {
+    it("should give the length when the rectangle is parallel to x and y axis and doesn't have breadth", () => {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 4 });
       assert.deepStrictEqual(rectangle1.perimeter, 8);
     });

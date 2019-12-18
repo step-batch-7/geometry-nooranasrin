@@ -27,8 +27,7 @@ class Line {
   }
 
   get slope() {
-    const slope = (this.endA.y - this.endB.y) / (this.endA.x - this.endB.x);
-    return slope == -Infinity ? Infinity : slope;
+    return (this.endA.y - this.endB.y) / (this.endA.x - this.endB.x);
   }
 
   isEqualTo(other) {
@@ -53,7 +52,7 @@ class Line {
 
   findY(x) {
     if (!isNumInRange([this.endA.x, this.endB.x], x)) return NaN;
-    if (this.slope === Infinity) return this.endA.y;
+    if (this.slope === Infinity || this.slope === -Infinity) return this.endA.y;
     const dx = x - this.endA.x;
     return dx * this.slope + this.endA.y;
   }

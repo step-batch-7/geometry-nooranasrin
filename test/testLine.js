@@ -155,7 +155,7 @@ describe("Line", () => {
     });
     it("should give the infinity when the line is parallel to y axis", () => {
       const line = new Line({ x: 4, y: -4 }, { x: 4, y: 4 });
-      assert.strictEqual(line.slope, Infinity);
+      assert.strictEqual(line.slope, -Infinity);
     });
     it("Should give slope of a line when slope is negative", () => {
       const line = new Line({ x: 7, y: 2 }, { x: 3, y: 3 });
@@ -164,12 +164,6 @@ describe("Line", () => {
     it("should give NaN if end points of the line are same", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
       assert.isNaN(line.slope);
-    });
-    it("should give Infinity as slope when line is parallel to y-axis and direction is upwards", function() {
-      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 1 });
-      const actualValue = line.slope;
-      const expectedValue = Infinity;
-      assert.strictEqual(actualValue, expectedValue);
     });
   });
 
