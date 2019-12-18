@@ -51,12 +51,12 @@ class Rectangle {
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
     const sides = getSides(this);
-    return sides.some(element => point.isOn(element));
+    return sides.some(side => point.isOn(side));
   }
 
   covers(point) {
     if (!(point instanceof Point)) return false;
-    const [AB, BC, CD, AD] = getSides(this);
+    const [AB, , , AD] = getSides(this);
     const isXInRange = isNumInRange([AB.endA.x, AB.endB.x], point.x);
     const isYInRange = isNumInRange([AB.endA.y, AD.endB.y], point.y);
     return isXInRange && isYInRange;
