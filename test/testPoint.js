@@ -4,6 +4,16 @@ const Line = require("../src/line");
 const Circle = require("../src/circle");
 
 describe("Point", () => {
+  describe("notEditable", function() {
+    it("co-ordinates of the point should not be editable", function() {
+      const point = new Point(4, 5);
+      point.x = 45;
+      point.y = 454;
+      const expectedValue = new Point(4, 5);
+      assert.deepStrictEqual(point, expectedValue);
+    });
+  });
+
   describe("isEqualTo", () => {
     it("should validate when the two instances are equal", () => {
       const point = new Point(10, 11);
