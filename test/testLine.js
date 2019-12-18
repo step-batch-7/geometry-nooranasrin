@@ -155,7 +155,7 @@ describe("Line", () => {
     });
     it("should give the infinity when the line is parallel to y axis", () => {
       const line = new Line({ x: 4, y: -4 }, { x: 4, y: 4 });
-      assert.strictEqual(line.slope, -Infinity);
+      assert.strictEqual(line.slope, Infinity);
     });
     it("Should give slope of a line when slope is negative", () => {
       const line = new Line({ x: 7, y: 2 }, { x: 3, y: 3 });

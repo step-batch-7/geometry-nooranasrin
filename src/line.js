@@ -27,7 +27,7 @@ class Line {
   }
 
   get slope() {
-    return (this.endA.y - this.endB.y) / (this.endA.x - this.endB.x);
+    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
   }
 
   isEqualTo(other) {
