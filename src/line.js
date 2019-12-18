@@ -76,7 +76,7 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    if (typeof distance != "number" || distance === NaN) return null;
+    if (typeof distance != "number") return null;
     const ratio = distance / this.length;
     if (distance < 0 || distance > this.length) return null;
     const xRatio = (1 - ratio) * this.endA.x + ratio * this.endB.x;
@@ -85,6 +85,7 @@ class Line {
   }
 
   findPointFromEnd(distance) {
+    if (typeof distance != "number") return null;
     return this.findPointFromStart(this.length - distance);
   }
 }
